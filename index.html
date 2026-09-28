@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>財務管理第2章｜貨幣的時間價值｜互動複習</title>
+<style>
+:root {
+  --bg:#f6f7fb; --card:#ffffff; --text:#202533; --muted:#6f7687;
+  --accent:#4255ff; --accent2:#6e7aff; --good:#18794e; --bad:#b42318;
+  --border:#e5e8f0; --soft:#eef1ff; --warn:#fff7e6; --shadow:0 12px 32px rgba(28,35,67,.08);
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:"Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;background:var(--bg);color:var(--text);line-height:1.65}
+header{background:linear-gradient(135deg,#2736c8,#6573ff);color:white;padding:34px 20px}
+.wrap{max-width:1100px;margin:auto}
+header h1{margin:0 0 6px;font-size:clamp(26px,4vw,42px)}
+header p{margin:0;opacity:.9}
+.toolbar{position:sticky;top:0;z-index:10;background:rgba(246,247,251,.95);backdrop-filter:blur(10px);border-bottom:1px solid var(--border)}
+.toolbar .wrap{display:flex;gap:10px;flex-wrap:wrap;padding:12px 18px;align-items:center}
+button,select,input{font:inherit}
+button{border:0;border-radius:12px;padding:10px 14px;cursor:pointer;background:white;border:1px solid var(--border)}
+button.primary{background:var(--accent);color:white;border-color:var(--accent)}
+button:hover{transform:translateY(-1px)}
+select,input[type="search"]{border:1px solid var(--border);border-radius:12px;padding:10px 12px;background:white}
+main{padding:24px 18px 60px}
+.dashboard{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:20px}
+.stat,.formula-card,.card{background:var(--card);border:1px solid var(--border);box-shadow:var(--shadow);border-radius:18px}
+.stat{padding:18px} .stat strong{display:block;font-size:28px;color:var(--accent)} .stat span{color:var(--muted);font-size:14px}
+.formulas{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:18px 0 26px}
+.formula-card{padding:16px}
+.formula-card b{display:block;margin-bottom:6px}
+.formula-card code{background:var(--soft);padding:3px 7px;border-radius:7px}
+.notice{background:var(--warn);padding:14px 16px;border-radius:14px;margin:14px 0 24px;border:1px solid #f2dfb4}
+#quiz{display:grid;gap:16px}
+.card{padding:20px}
+.qtop{display:flex;justify-content:space-between;gap:16px;align-items:flex-start}
+.badge{display:inline-block;background:var(--soft);color:#3442c2;border-radius:999px;padding:4px 9px;font-size:13px;margin-bottom:8px}
+.qnum{font-weight:700;color:var(--muted);white-space:nowrap}
+.question{font-size:18px;font-weight:700;margin:4px 0 14px}
+.options{display:grid;gap:9px}
+.option{
+  display:flex;gap:12px;align-items:center;
+  border:2px solid var(--border);
+  padding:13px 14px;border-radius:14px;cursor:pointer;background:#fff;
+  transition:.18s ease;
+}
+.option:hover{border-color:#9aa4ff;background:#f8f9ff;box-shadow:0 6px 16px rgba(66,85,255,.08)}
+.option input{display:none}
+.choice-letter{
+  width:38px;height:38px;border-radius:50%;
+  display:inline-flex;align-items:center;justify-content:center;
+  flex:0 0 38px;font-weight:800;
+  border:2px solid #cfd4e6;background:#f7f8fc;color:#5b6272;
+}
+.option-text{flex:1}
+.option.selected{border-color:var(--accent);background:#eef1ff;box-shadow:0 0 0 3px rgba(66,85,255,.08)}
+.option.selected .choice-letter{background:var(--accent);border-color:var(--accent);color:white}
+.option.correct{border-color:#73c79c;background:#effaf4}
+.option.correct .choice-letter{background:#18794e;border-color:#18794e;color:white}
+.option.wrong{border-color:#e48d84;background:#fff3f1}
+.option.wrong .choice-letter{background:#b42318;border-color:#b42318;color:white}
+.result-tag{font-size:13px;font-weight:800;margin-left:auto;padding:4px 8px;border-radius:999px}
+.result-tag.good{color:#18794e;background:#dff5e9}
+.result-tag.bad{color:#b42318;background:#fde7e4}
+.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.answerbox{display:none;margin-top:14px;padding:14px 16px;border-radius:12px;background:#f7f8ff;border-left:4px solid var(--accent)}
+.answerbox.show{display:block}
+.answerline{font-weight:800;color:var(--accent);margin-bottom:6px}
+.detail{color:#394052}
+.note{margin-top:8px;color:var(--muted);font-size:14px}
+.star{font-size:19px;line-height:1;padding:7px 10px}
+.star.active{background:#fff3bf;border-color:#ffd666}
+.hidden{display:none!important}
+.footer-note{margin-top:28px;color:var(--muted);font-size:14px;text-align:center}
+@media (max-width:800px){.dashboard,.formulas{grid-template-columns:1fr 1fr}}
+@media (max-width:520px){.dashboard,.formulas{grid-template-columns:1fr} .toolbar .wrap>*{flex:1 1 auto} .qtop{display:block}}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <h1>財務管理 第 2 章｜貨幣的時間價值</h1>
+    <p>50 題互動複習｜答案＋詳解＋觀念提示｜全離線單檔網頁</p>
+  </div>
+</header>
+
+<div class="toolbar">
+  <div class="wrap">
+    <select id="sectionFilter">
+      <option value="全部">全部章節</option>
+      <option>基本觀念</option><option>終值與現值</option><option>年金終值與年金現值</option><option>永續年金</option><option>有效年利率</option>
+    </select>
+    <select id="mode">
+      <option value="review">複習模式</option>
+      <option value="test">測驗模式</option>
+      <option value="wrong">錯題模式</option>
+      <option value="star">收藏題</option>
+    </select>
+    <input id="search" type="search" placeholder="搜尋題目關鍵字">
+    <button id="shuffleBtn">隨機排序</button>
+    <button id="resetBtn">重設作答</button>
+    <button id="submitBtn" class="primary">計算成績</button>
+  </div>
+</div>
+
+<main class="wrap">
+  <section class="dashboard">
+    <div class="stat"><strong id="answered">0</strong><span>已作答</span></div>
+    <div class="stat"><strong id="correct">0</strong><span>答對</span></div>
+    <div class="stat"><strong id="wrong">0</strong><span>答錯</span></div>
+    <div class="stat"><strong id="accuracy">—</strong><span>目前正確率</span></div>
+  </section>
+
+  <section class="formulas">
+    <div class="formula-card"><b>單筆終值</b><code>FV = PV(1+k)^n</code></div>
+    <div class="formula-card"><b>單筆現值</b><code>PV = FV/(1+k)^n</code></div>
+    <div class="formula-card"><b>永續年金</b><code>PV = PMT/k</code></div>
+    <div class="formula-card"><b>成長永續年金</b><code>PV = C₁/(k-g)</code></div>
+    <div class="formula-card"><b>期初年金</b><code>普通年金 × (1+k)</code></div>
+    <div class="formula-card"><b>有效年利率</b><code>EAR=(1+k/m)^m−1</code></div>
+    <div class="formula-card"><b>72 法則</b><code>翻倍年數≈72÷利率%</code></div>
+    <div class="formula-card"><b>69 法則</b><code>連續複利翻倍≈69÷利率%</code></div>
+  </section>
+
+  <div class="notice">
+    <b>使用方式：</b>先選答案，再按「看答案與詳解」。錯題會自動記錄在瀏覽器中，可切換到「錯題模式」重複練習；星號可收藏重點題。
+  </div>
+
+  <section id="quiz"></section>
+  <div class="footer-note">本網頁不會上傳作答紀錄，資料只保存在目前瀏覽器的 localStorage。</div>
+</main>
+
+<script>
+const DATA = [{"id": 1, "section": "基本觀念", "q": "儲蓄之所以能在未來獲得更多的貨幣所得，主要是因為何種因素存在？", "options": {"A": "利率", "B": "機會成本", "C": "效用", "D": "通貨膨脹"}, "answer": "A", "explanation": "利率的存在使今日的 1 元可在未來產生額外價值，這就是貨幣時間價值的來源。", "note": "核心觀念：今天的錢可以投資或存款，因此具有賺取利息的能力。"}, {"id": 2, "section": "基本觀念", "q": "在正利率的環境下，相較於今天的 1 元，一年後相同的 1 元：", "options": {"A": "價值較高", "B": "價值較低", "C": "無法比較", "D": "價值相同"}, "answer": "B", "explanation": "今天的 1 元可以存入銀行賺取利息，因此未來相同的 1 元比較沒有價值。", "note": "正利率下：現金愈早拿到，通常現值愈高。"}, {"id": 3, "section": "基本觀念", "q": "將未來不同時點的貨幣價值轉換為今日價值的過程，稱為：", "options": {"A": "折現", "B": "複利", "C": "攤銷", "D": "增值"}, "answer": "A", "explanation": "終值轉換成現值的過程稱為折現，有助於在同一時點比較價值大小。", "note": "未來值 → 現值 = 折現；現值 → 未來值 = 複利。"}, {"id": 4, "section": "基本觀念", "q": "其他條件不變下，期間愈長，則：", "options": {"A": "現值利率因子愈大，終值利率因子愈小", "B": "現值利率因子愈小，終值利率因子愈大", "C": "現值與終值利率因子皆愈大", "D": "現值與終值利率因子皆愈小"}, "answer": "B", "explanation": "PVIF＝1/(1+k)^n，n 愈大分母愈大，PVIF 愈小；FVIF＝(1+k)^n，n 愈大則愈大。", "note": "期間越長：折現越多、複利也越多。"}, {"id": 5, "section": "基本觀念", "q": "在負利率的情況下，貨幣的時間價值將會：", "options": {"A": "等於零", "B": "由正轉變為負", "C": "維持為正", "D": "變為無限大"}, "answer": "B", "explanation": "負利率下「複利」變成「負利」，未來的 1 元反而比今天的 1 元更有價值，時間價值由正轉負。", "note": "這是正利率直覺的反面情況。"}, {"id": 6, "section": "基本觀念", "q": "年金的第一次支付時點在第 1 期期末者，稱為：", "options": {"A": "普通年金", "B": "成長年金", "C": "永續年金", "D": "期初年金"}, "answer": "A", "explanation": "第 1 期期末開始支付為普通年金（期末年金）；第 1 期期初開始支付為期初年金。", "note": "判斷年金類型時，先看第一筆錢何時支付。"}, {"id": 7, "section": "基本觀念", "q": "計算 N 期年金現值時，期初年金現值等於普通年金現值乘上：", "options": {"A": "1 期的終值利率因子 (1+k)", "B": "N 期的終值利率因子", "C": "N 期的現值利率因子", "D": "N＋1 期的終值利率因子"}, "answer": "A", "explanation": "期初年金每筆現金流量都比普通年金早一期，因此 PVIFA(k,n)×(1+k)。終值同理。", "note": "期初年金 = 普通年金 × (1+k)。"}, {"id": 8, "section": "基本觀念", "q": "永續年金因為沒有到期日，分析時應重視的是它的：", "options": {"A": "現值", "B": "終值", "C": "票面值", "D": "到期值"}, "answer": "A", "explanation": "永續年金永遠支付，終值無限大而沒有意義；其現值為 PMT/k，是有限的數值。", "note": "永續年金最常考公式：PV = PMT / k。"}, {"id": 9, "section": "基本觀念", "q": "莊子「朝三暮四、朝四暮三」的故事中，若朝暮間的貼現率為正，則：", "options": {"A": "無法判斷何者現值較大", "B": "朝三暮四的現值較大", "C": "兩者現值相同，眾猴不理性", "D": "朝四暮三的現值較大，眾猴高興有道理"}, "answer": "D", "explanation": "以朝為第 0 期、暮為第 1 期，較早拿到較多的桃子，現值較大，符合貨幣時間價值的觀念。", "note": "正折現率下，越早收到的利益越有價值。"}, {"id": 10, "section": "基本觀念", "q": "淑娟分期付款購車，每期繳交相同金額，24 期後付清本息。她若想判斷是否划算，應運用下列哪一項財務知識？", "options": {"A": "年金終值", "B": "複利終值", "C": "年金現值", "D": "複利現值"}, "answer": "C", "explanation": "每期等額付款屬於年金，要與目前的車價（今日價值）比較，所以用年金現值。", "note": "遇到『每期等額』＋『要和今天價格比較』，優先想到年金現值。"}, {"id": 11, "section": "基本觀念", "q": "名目年利率相同時，一年內複利次數愈多，有效年利率將：", "options": {"A": "愈高", "B": "愈低", "C": "不變", "D": "先升後降"}, "answer": "A", "explanation": "EAR＝(1+k/m)^m－1，m 愈大，利滾利次數愈多，有效年利率愈高。", "note": "名目利率相同時，複利越頻繁，EAR 越高。"}, {"id": 12, "section": "基本觀念", "q": "「以房養老」又稱為：", "options": {"A": "理財型房貸", "B": "二胎房貸", "C": "青年安心成家貸款", "D": "逆向抵押貸款"}, "answer": "D", "explanation": "以房養老是將房屋抵押給銀行，由銀行按月撥付款項給借款人，與傳統房貸現金流向相反。", "note": "傳統房貸：借款人付銀行；逆向抵押：銀行定期付給屋主。"}, {"id": 13, "section": "基本觀念", "q": "年金保險累積期滿選擇分期領回時，保戶每期可領回的金額如何計算？", "options": {"A": "保單價值準備金 × 年金終值利率因子", "B": "已繳保費總額 ÷ 領取期數", "C": "保單價值準備金 ÷ 年金現值利率因子", "D": "保單價值準備金 × 宣告利率"}, "answer": "C", "explanation": "保單價值準備金相當於年金現值（PVOA），除以年金現值利率因子即可求出每期金額 PMT。", "note": "PMT = 年金現值 ÷ PVIFA。"}, {"id": 14, "section": "基本觀念", "q": "在年金保險的累積期間，保險公司每年根據何者計算保單價值準備金？", "options": {"A": "宣告利率", "B": "央行重貼現率", "C": "保單的票面利率", "D": "預定利率"}, "answer": "A", "explanation": "累積期間依宣告利率計算保單價值準備金；分期領回時才依預定利率與年金生命表計算年金現值利率因子。", "note": "題目問『累積期間』，答案是宣告利率。"}, {"id": 15, "section": "基本觀念", "q": "為解決勞保基金的財務危機，下列何者「不是」可行的改革方向？", "options": {"A": "晚領", "B": "少領", "C": "多繳", "D": "提早請領老年給付"}, "answer": "D", "explanation": "改革方向為多繳、少領、晚領、提高基金運用效益及政府撥補；提早請領會加重給付負擔。", "note": "這題考反向選擇：找『不是』改革方向。"}, {"id": 16, "section": "基本觀念", "q": "下列有關貨幣時間價值的敘述，何者「錯誤」？", "options": {"A": "其他條件相同時，期初年金現值大於普通年金現值", "B": "永續年金的終值可以用公式求得明確數值", "C": "當期消費大於當期所得時，須考慮借款的利息成本或放棄投資的機會成本", "D": "折現率大於零時，終值大於現值"}, "answer": "B", "explanation": "永續年金沒有到期日，終值無限大，沒有明確數值，只能計算現值。", "note": "永續年金的『現值』有公式，『終值』沒有有限明確值。"}, {"id": 17, "section": "終值與現值", "q": "甲向乙借款 20,000 元，約定 4 年後償還，年利率 8%，每年複利一次，則到期應償還多少？", "options": {"A": "25,194", "B": "27,210", "C": "26,400", "D": "29,386"}, "answer": "B", "explanation": "FV＝20,000×FVIF(8%,4)＝20,000×1.3605＝27,210 元。", "note": "單筆現值求終值：FV = PV × FVIF。"}, {"id": 18, "section": "終值與現值", "q": "現在存入 10,000 元，年利率 8%的 3 年期定期存款，每年複利一次，3 年後的終值為多少？", "options": {"A": "12,400", "B": "11,664", "C": "12,597", "D": "13,605"}, "answer": "C", "explanation": "FV＝10,000×FVIF(8%,3)＝10,000×1.2597＝12,597 元。", "note": "終值 = 本金 × 終值利率因子。"}, {"id": 19, "section": "終值與現值", "q": "年初在 P2P 平台借款 10 萬元，年利率 12%，借期 2 年，半年計息一次，2 年後須償還多少本利和？", "options": {"A": "112,360", "B": "124,000", "C": "126,250", "D": "125,440"}, "answer": "C", "explanation": "每期利率 6%，共 4 期：FV＝100,000×FVIF(6%,4)＝100,000×1.2625＝126,250 元。", "note": "半年複利：每期利率 = 12%÷2 = 6%；期數 = 2×2 = 4。"}, {"id": 20, "section": "終值與現值", "q": "老王希望 20 年後累積 100 萬元給孫子當結婚基金，若銀行定存利率 1%，每年複利，現在須存入多少？", "options": {"A": "833,333", "B": "800,000", "C": "819,500", "D": "905,300"}, "answer": "C", "explanation": "PV＝1,000,000×PVIF(1%,20)＝1,000,000×0.8195＝819,500 元。", "note": "未來目標金額倒推今天要準備多少：用現值。"}, {"id": 21, "section": "終值與現值", "q": "10 年後的 60,000 元，以年利率 5%折現，其現值為多少？", "options": {"A": "42,857", "B": "30,000", "C": "36,834", "D": "46,330"}, "answer": "C", "explanation": "PV＝60,000×PVIF(5%,10)＝60,000×0.6139＝36,834 元。", "note": "PV = FV × PVIF。"}, {"id": 22, "section": "終值與現值", "q": "存入 30 萬元，名目年利率 8%，每半年複利一次，5 年後到期餘額約為多少？", "options": {"A": "420,000", "B": "440,790", "C": "647,670", "D": "444,060"}, "answer": "D", "explanation": "每期 4%、共 10 期：FV＝300,000×FVIF(4%,10)＝300,000×1.4802＝444,060 元。", "note": "半年複利：8%÷2=4%，5×2=10 期。"}, {"id": 23, "section": "終值與現值", "q": "某銀行推出「定期 9 年，財富 2 倍」的方案，每年複利一次，其有效年利率約為多少？", "options": {"A": "約 6%", "B": "約 8%", "C": "約 11%", "D": "約 9%"}, "answer": "B", "explanation": "FVIF(k,9)＝2，查終值利率因子表 n＝9 那一列，8%的值為 1.9990 最接近 2，故約 8%。亦符合 72 法則：72÷8＝9 年。", "note": "『幾年翻倍』可快速用 72 法則估算。"}, {"id": 24, "section": "終值與現值", "q": "依 72 法則，若年利率為 9%，每年複利一次，本金大約幾年會變成兩倍？", "options": {"A": "9 年", "B": "12 年", "C": "8 年", "D": "6 年"}, "answer": "C", "explanation": "72÷9＝8 年。", "note": "72 法則：翻倍年數 ≈ 72 ÷ 年利率(%)。"}, {"id": 25, "section": "終值與現值", "q": "依 69 法則，在連續複利下，年利率 3%約需多少年本利和可達本金的兩倍？", "options": {"A": "46 年", "B": "24 年", "C": "23 年", "D": "33 年"}, "answer": "C", "explanation": "連續複利：e^(rY)＝2，rY＝ln2≈0.693，Y≈69÷3＝23 年。", "note": "連續複利翻倍常用 69 法則。"}, {"id": 26, "section": "終值與現值", "q": "若現在投資 10,000 元，希望 10 年後成長為 16,289 元，每年複利一次，年報酬率需為多少？", "options": {"A": "5%", "B": "4%", "C": "6.29%", "D": "6%"}, "answer": "A", "explanation": "FVIF(k,10)＝16,289÷10,000＝1.6289，查終值利率因子表 n＝10 那一列，5%恰為 1.6289。", "note": "不是把總成長率直接除以年數；複利要查因子或解指數。"}, {"id": 27, "section": "終值與現值", "q": "老張向朋友借款 40 萬元，約定 4 年後一次償還 50 萬元，此借款的隱含年利率落在哪個區間？", "options": {"A": "介於 4%與 5%之間", "B": "介於 5%與 6%之間", "C": "介於 7%與 8%之間", "D": "介於 6%與 7%之間"}, "answer": "B", "explanation": "FVIF(k,4)＝500,000÷400,000＝1.25。查表：FVIF(5%,4)＝1.2155，FVIF(6%,4)＝1.2625，1.25 介於兩者之間，故約 5%～6%（約 5.74%）。", "note": "先算 FV/PV，再用期數對照終值因子表。"}, {"id": 28, "section": "終值與現值", "q": "某零票面利率債券期限 8 年，以面額發行，到期時一次支付面額 37.17%的利息並償還本金，其隱含年利率約為多少？", "options": {"A": "約 6%", "B": "約 3%", "C": "約 4%", "D": "約 5%"}, "answer": "C", "explanation": "FVIF(k,8)＝1.3717，查表 FVIF(4%,8)＝1.3686 最接近，故約 4%。", "note": "37.17%÷8 是單利想法，不能直接當作複利年利率。"}, {"id": 29, "section": "年金終值與年金現值", "q": "開立零存整付帳戶，自今年年底起每年存入 2,000 元，年利率 6%，每年複利一次，10 年後本利和約為多少？", "options": {"A": "20,000", "B": "14,720", "C": "26,362", "D": "27,943"}, "answer": "C", "explanation": "普通年金終值：2,000×FVIFA(6%,10)＝2,000×13.1808＝26,362 元。", "note": "年底開始每年存一樣金額 → 普通年金終值。"}, {"id": 30, "section": "年金終值與年金現值", "q": "有一 5 年期年金，每期 2,000 元，年利率 8%，第一次付款日在今年年底，此年金現值約為多少？", "options": {"A": "6,624", "B": "8,624", "C": "7,985", "D": "10,000"}, "answer": "C", "explanation": "普通年金現值：2,000×PVIFA(8%,5)＝2,000×3.9927＝7,985 元。", "note": "第一筆在年底 → 普通年金。"}, {"id": 31, "section": "年金終值與年金現值", "q": "承上題，若第一次付款日改為今天，其餘條件相同，此年金現值約為多少？", "options": {"A": "6,624", "B": "11,733", "C": "8,624", "D": "7,985"}, "answer": "C", "explanation": "期初年金現值＝2,000＋2,000×PVIFA(8%,4)＝8,624 元；亦可用 2,000×PVIFA(8%,5)×1.08。", "note": "第一筆改成今天 → 期初年金，價值比普通年金高。"}, {"id": 32, "section": "年金終值與年金現值", "q": "每年年初存入 5,000 元，年利率 5%，每年複利一次，10 年後本利和約為多少？", "options": {"A": "50,000", "B": "62,890", "C": "40,539", "D": "66,034"}, "answer": "D", "explanation": "期初年金終值：5,000×FVIFA(5%,10)×1.05＝5,000×12.5779×1.05＝66,034 元。", "note": "年初存 → 期初年金；普通年金結果再乘 (1+k)。"}, {"id": 33, "section": "年金終值與年金現值", "q": "10 年期、每年年底存款 6,000 元，利率 5%，其現值為多少？", "options": {"A": "60,000", "B": "46,330", "C": "75,467", "D": "36,834"}, "answer": "B", "explanation": "PV＝6,000×PVIFA(5%,10)＝6,000×7.7217＝46,330 元。", "note": "等額、年底支付、求今天價值 → 普通年金現值。"}, {"id": 34, "section": "年金終值與年金現值", "q": "林先生房貸原本 8 年期，每年年底還款 30 萬元。因財務狀況不佳改為 12 年期，貸款年利率均為 8%，新的每年還款金額約為多少？", "options": {"A": "250,000", "B": "200,000", "C": "143,665", "D": "228,763"}, "answer": "D", "explanation": "原貸款現值＝300,000×PVIFA(8%,8)＝1,723,980；新 PMT＝1,723,980÷PVIFA(8%,12)＝1,723,980÷7.5361≈228,763 元。", "note": "先用舊還款條件求『貸款現值』，再用新年限反推出新 PMT。"}, {"id": 35, "section": "年金終值與年金現值", "q": "小美貸款 60 萬元購車，年利率 12%，按月複利，分 24 期每月月底等額攤還，每月應繳約多少？", "options": {"A": "30,000", "B": "31,000", "C": "25,000", "D": "28,244"}, "answer": "D", "explanation": "月利率 1%、共 24 期：PMT＝600,000÷PVIFA(1%,24)＝600,000÷21.2434≈28,244 元。", "note": "月付貸款：年利率先換成月利率，再用年金現值反推 PMT。"}, {"id": 36, "section": "年金終值與年金現值", "q": "阿志每年年底提撥 5 萬元至退休金帳戶，年利率 8%，25 年後退休時帳戶約累積多少？", "options": {"A": "3,655,295", "B": "533,740", "C": "3,947,719", "D": "1,250,000"}, "answer": "A", "explanation": "50,000×FVIFA(8%,25)＝50,000×73.1059＝3,655,295 元。", "note": "長期退休提撥常考普通年金終值。"}, {"id": 37, "section": "年金終值與年金現值", "q": "承上題，若退休金改以年金方式分 20 年、每年年底領取（利率仍為 8%），每年約可領多少？", "options": {"A": "182,765", "B": "292,424", "C": "344,724", "D": "372,302"}, "answer": "D", "explanation": "3,655,295＝PMT×PVIFA(8%,20)＝PMT×9.8181，所以 PMT≈372,302 元。", "note": "退休時帳戶餘額就是 20 年提領年金的現值。"}, {"id": 38, "section": "年金終值與年金現值", "q": "職棒投手有兩份契約：A 隊年薪 500 萬元、5 年（每年年底支付）；B 隊簽約時立即支付 700 萬元，之後 5 年每年年底支付 350 萬元。利率 8%下，哪一份較優渥？", "options": {"A": "B 隊，現值約 2,450 萬元", "B": "B 隊，現值約 2,097 萬元", "C": "A 隊，現值約 1,996 萬元", "D": "A 隊，現值約 2,500 萬元"}, "answer": "B", "explanation": "PVIFA(8%,5)＝3.9927。A：500萬×3.9927≈1,996萬；B：700萬＋350萬×3.9927≈2,097萬，因此 B 隊較優渥。", "note": "比較不同付款時點的方案，必須先全部換成同一時點的現值。"}, {"id": 39, "section": "年金終值與年金現值", "q": "退休時有三種領法：甲案現在一次領 300 萬元；乙案現在領 150 萬元、一年後再領 160 萬元；丙案一年後起每年領 28 萬元終生（假設永遠領取）。折現率 10%，應選哪一案？", "options": {"A": "丙案", "B": "乙案", "C": "三案現值相同", "D": "甲案"}, "answer": "D", "explanation": "甲＝300萬；乙＝150＋160/1.1≈295.45萬；丙＝28/0.1＝280萬。甲案現值最高。", "note": "把所有方案都折現到今天再比較。"}, {"id": 40, "section": "年金終值與年金現值", "q": "公司貸款 100 萬元，期限 5 年，年利率 6%，每年年底等額攤還本息，每年應還款約多少？", "options": {"A": "237,394", "B": "260,000", "C": "267,640", "D": "200,000"}, "answer": "A", "explanation": "PMT＝1,000,000÷PVIFA(6%,5)＝1,000,000÷4.2124≈237,394 元。", "note": "貸款本金 = 年金現值，因此 PMT = PV ÷ PVIFA。"}, {"id": 41, "section": "永續年金", "q": "一位長者以永續年金方式，每年年底捐助 12 萬元給孤兒院，若利率為 6%，這筆捐助的現值為多少？", "options": {"A": "1,500,000", "B": "2,000,000", "C": "1,200,000", "D": "2,120,000"}, "answer": "B", "explanation": "PV＝120,000÷0.06＝2,000,000 元。", "note": "普通永續年金：PV = PMT / k。"}, {"id": 42, "section": "永續年金", "q": "某銀行發行無到期日債券，票面利率 4.75%，每年付息一次。若剛付完利息時的殖利率為 4%，每 100 美元面額的債券價格為多少？", "options": {"A": "100.00", "B": "118.75", "C": "84.21", "D": "104.75"}, "answer": "B", "explanation": "每年利息 4.75 美元，P＝4.75÷0.04＝118.75 美元。", "note": "無到期日債券可視為永續年金。"}, {"id": 43, "section": "永續年金", "q": "某永續現金流量明年支付 8,000 元，之後每年成長 4%，折現率 10%，其現值為多少？", "options": {"A": "133,333", "B": "57,143", "C": "138,667", "D": "80,000"}, "answer": "A", "explanation": "成長型永續年金：PV＝8,000÷(10%－4%)＝133,333 元。", "note": "成長型永續年金：PV = C1 / (k-g)，且需 k > g。"}, {"id": 44, "section": "永續年金", "q": "楊爸爸想買公寓出租，明年租金收入 24 萬元，之後每年隨通膨成長 3%直到永遠。若要求報酬率 9%，他可接受的最高價格為多少？", "options": {"A": "2,666,667", "B": "2,000,000", "C": "4,000,000", "D": "4,120,000"}, "answer": "C", "explanation": "PV＝240,000÷(9%－3%)＝4,000,000 元。", "note": "明年開始且每年固定成長 → 成長型永續年金。"}, {"id": 45, "section": "永續年金", "q": "某永續年金從第 3 年年底開始支付，每年 2,000 元，折現率 10%，其現值約為多少？", "options": {"A": "20,000", "B": "16,528", "C": "15,026", "D": "18,182"}, "answer": "B", "explanation": "在第 2 年年底的價值＝2,000÷0.1＝20,000；再折現 2 期：20,000×PVIF(10%,2)＝20,000×0.8264＝16,528 元。", "note": "延遲永續年金：先找第一筆支付前一期的價值，再折現回今天。"}, {"id": 46, "section": "永續年金", "q": "某永續年金從今天開始支付，每年 1,000 元，利率 10%，其現值為多少？", "options": {"A": "11,000", "B": "10,000", "C": "9,091", "D": "12,100"}, "answer": "A", "explanation": "今天的 1,000＋明年起的永續年金 1,000÷0.1＝10,000，合計 11,000 元。", "note": "今天就收到第一筆時，要把『今天這筆』另外加回去。"}, {"id": 47, "section": "永續年金", "q": "證券公司規劃抽獎，折現率 10%，下列哪一個方案現值最高？", "options": {"A": "明年起每年支付 1 萬 2 千元，直到永遠", "B": "4 年後支付 18 萬元", "C": "明年支付 7,000 元，之後每年增加 3%，直到永遠", "D": "現在支付現金 12 萬元"}, "answer": "B", "explanation": "依解答檔，(A)=120,000；(B)=180,000×PVIF(10%,4)=122,940，因此 B 最高。原解答檔對 C、D 的試算文字與題目選項排列有不一致之處，但不影響 B 為答案。", "note": "這題建議記住方法：每個方案先換算成『今天的現值』再比較。"}, {"id": 48, "section": "有效年利率", "q": "某銀行貸款名目年利率 8%，每季計息一次，其有效年利率為多少？", "options": {"A": "8.00%", "B": "8.16%", "C": "8.30%", "D": "8.24%"}, "answer": "D", "explanation": "每季利率 2%，EAR＝FVIF(2%,4)－1＝1.0824－1＝8.24%。", "note": "EAR = (1 + 名目年利率/m)^m - 1。"}, {"id": 49, "section": "有效年利率", "q": "曉明有兩個存款方案：方案一年利率 12.5%、每年複利一次；方案二年利率 12%、每月複利一次。何者較有利？", "options": {"A": "方案二，有效年利率 12%", "B": "兩方案相同", "C": "方案一，有效年利率 12.5%", "D": "方案二，有效年利率約 12.68%"}, "answer": "D", "explanation": "方案二每月利率 1%，EAR＝FVIF(1%,12)－1＝1.1268－1＝12.68%，高於方案一的 12.5%，所以方案二較有利。", "note": "不同複利頻率要比較 EAR，而不能只比名目利率。"}, {"id": 50, "section": "有效年利率", "q": "小王向地下錢莊借錢，契約規定每借 1 萬元每月須付利息 200 元，在按月複利的情況下，有效年利率約為多少？", "options": {"A": "24.00%", "B": "28.00%", "C": "2.00%", "D": "26.82%"}, "answer": "D", "explanation": "月利率＝200÷10,000＝2%；EAR＝FVIF(2%,12)－1＝1.2682－1＝26.82%。24%只是單利的名目利率。", "note": "先求月利率，再換算全年複利效果。"}];
+let order = DATA.map(x=>x.id);
+const state = JSON.parse(localStorage.getItem('fm_ch2_state')||'{}');
+const stars = new Set(JSON.parse(localStorage.getItem('fm_ch2_stars')||'[]'));
+
+function save(){
+  localStorage.setItem('fm_ch2_state', JSON.stringify(state));
+  localStorage.setItem('fm_ch2_stars', JSON.stringify([...stars]));
+}
+function stats(){
+  const vals=Object.values(state).filter(x=>x&&x.choice);
+  const c=vals.filter(x=>x.correct).length;
+  document.getElementById('answered').textContent=vals.length;
+  document.getElementById('correct').textContent=c;
+  document.getElementById('wrong').textContent=vals.length-c;
+  document.getElementById('accuracy').textContent=vals.length?Math.round(c/vals.length*100)+'%':'—';
+}
+function render(){
+  const sec=document.getElementById('sectionFilter').value;
+  const mode=document.getElementById('mode').value;
+  const s=document.getElementById('search').value.trim().toLowerCase();
+  const qz=document.getElementById('quiz');
+  qz.innerHTML='';
+  let items=order.map(id=>DATA.find(x=>x.id===id));
+  items=items.filter(q=>sec==='全部'||q.section===sec);
+  items=items.filter(q=>!s||q.q.toLowerCase().includes(s)||Object.values(q.options).join(' ').toLowerCase().includes(s));
+  if(mode==='wrong') items=items.filter(q=>state[q.id]?.choice && !state[q.id]?.correct);
+  if(mode==='star') items=items.filter(q=>stars.has(q.id));
+
+  if(!items.length){ qz.innerHTML='<div class="card">目前沒有符合條件的題目。</div>'; return; }
+
+  items.forEach(q=>{
+    const card=document.createElement('article'); card.className='card';
+    const st=state[q.id]||{};
+    const selected=st.choice||'';
+    const answered=!!selected;
+    const opts=Object.entries(q.options).map(([k,v])=>`
+      <label class="option ${selected===k?'selected':''} ${st.revealed && k===q.answer?'correct':''} ${st.revealed && selected===k && selected!==q.answer?'wrong':''}">
+        <input type="radio" name="q${q.id}" value="${k}" ${selected===k?'checked':''}>
+        <span class="choice-letter">${k}</span>
+        <span class="option-text">${v}</span>
+        ${st.revealed && k===q.answer?'<span class="result-tag good">正確答案</span>':''}
+        ${st.revealed && selected===k && selected!==q.answer?'<span class="result-tag bad">你的答案</span>':''}
+      </label>`).join('');
+    card.innerHTML=`
+      <div class="qtop">
+        <div><span class="badge">${q.section}</span><div class="question">${q.q}</div></div>
+        <div><span class="qnum">第 ${q.id} 題</span> <button class="star ${stars.has(q.id)?'active':''}" title="收藏">★</button></div>
+      </div>
+      <div class="options">${opts}</div>
+      <div class="actions">
+        <button class="reveal">${st.revealed?'收起詳解':'看答案與詳解'}</button>
+        <button class="clear">清除本題作答</button>
+      </div>
+      <div class="answerbox ${st.revealed?'show':''}">
+        <div class="answerline">答案：${q.answer}．${q.options[q.answer]}</div>
+        <div class="detail">${q.explanation}</div>
+        <div class="note">💡 ${q.note}</div>
+      </div>`;
+    card.querySelectorAll('input[type=radio]').forEach(r=>r.addEventListener('change',e=>{
+      state[q.id]={choice:e.target.value, correct:e.target.value===q.answer, revealed:state[q.id]?.revealed||false};
+      save(); stats(); render();
+    }));
+    card.querySelector('.reveal').onclick=()=>{
+      const old=state[q.id]||{};
+      state[q.id]={...old,revealed:!old.revealed};
+      save(); render();
+    };
+    card.querySelector('.clear').onclick=()=>{delete state[q.id]; save(); stats(); render();};
+    card.querySelector('.star').onclick=()=>{stars.has(q.id)?stars.delete(q.id):stars.add(q.id);save();render();};
+    qz.appendChild(card);
+  });
+  stats();
+}
+document.getElementById('sectionFilter').onchange=render;
+document.getElementById('mode').onchange=render;
+document.getElementById('search').oninput=render;
+document.getElementById('shuffleBtn').onclick=()=>{order=[...order].sort(()=>Math.random()-.5);render();};
+document.getElementById('resetBtn').onclick=()=>{if(confirm('確定清除所有作答紀錄？收藏不會被清除。')){Object.keys(state).forEach(k=>delete state[k]);save();render();}};
+document.getElementById('submitBtn').onclick=()=>{
+  const vals=Object.values(state).filter(x=>x&&x.choice);
+  const c=vals.filter(x=>x.correct).length;
+  alert(vals.length?`目前作答 ${vals.length} 題，答對 ${c} 題，正確率 ${Math.round(c/vals.length*100)}%。`:'你還沒有作答。');
+};
+render();
+</script>
+</body>
+</html>
